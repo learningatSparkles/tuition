@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Academy | Excellence in Coaching & Tuition</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-11 h-11 bg-gradient-to-tr from-brand-600 to-indigo-400 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md shadow-brand-500/20">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-brand-700 to-indigo-600 bg-clip-text text-transparent">Apex Academy</span>
+                    <p class="text-xs text-slate-500 font-medium">Tuition & Coaching Institute</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+                <button onclick="switchTab('home')" class="nav-link text-brand-600 font-semibold transition hover:text-brand-600">Home</button>
+                <button onclick="switchTab('courses')" class="nav-link transition hover:text-brand-600">Courses</button>
+                <button onclick="switchTab('calendar')" class="nav-link transition hover:text-brand-600">Calendar & Timetable</button>
+                <button onclick="switchTab('fees')" class="nav-link transition hover:text-brand-600">Fee Structure</button>
+                <button onclick="switchTab('registration')" class="nav-link transition hover:text-brand-600">Admission</button>
+                <button onclick="switchTab('portal')" class="nav-link transition hover:text-brand-600">Portal Login</button>
+                <button onclick="switchTab('contact')" class="nav-link transition hover:text-brand-600">Contact</button>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-3">
+                <button onclick="switchTab('portal')" class="px-4 py-2 text-sm font-semibold text-brand-600 bg-brand-50 rounded-xl hover:bg-brand-100 transition">
+                    <i class="fa-solid fa-user-lock mr-1.5"></i> Login
+                </button>
+                <button onclick="switchTab('registration')" class="px-5 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl shadow-lg shadow-brand-500/25 hover:bg-brand-700 transition transform hover:-translate-y-0.5">
+                    Enroll Now
+                </button>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Modal/Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-white border-b border-slate-200 shadow-xl px-6 py-6 space-y-4 animate-fade-in">
+            <button onclick="switchTab('home'); toggleMobileMenu();" class="block w-full text-left font-medium py-2 text-slate-700 hover:text-brand-600">Home</button>
+            <button onclick="switchTab('courses'); toggleMobileMenu();" class="block w-full text-left font-medium py-2 text-slate-700 hover:text-brand-600">Courses</button>
+            <button onclick="switchTab('calendar'); toggleMobileMenu();" class="block w-full text-left font-medium py-2 text-slate-700 hover:text-brand-600">Calendar & Timetable</button>
+            <button onclick="switchTab('fees'); toggleMobileMenu();" class="block w-full text-left font-medium py-2 text-slate-700 hover:text-brand-600">Fee Structure & Calculator</button>
+            <button onclick="switchTab('registration'); toggleMobileMenu();" class="block w-full text-left font-medium py-2 text-slate-700 hover:text-brand-600">Admission Form</button>
+            <button onclick="switchTab('portal'); toggleMobileMenu();" class="block w-full text-left font-medium py-2 text-slate-700 hover:text-brand-600">Portal Login</button>
+            <button onclick="switchTab('contact'); toggleMobileMenu();" class="block w-full text-left font-medium py-2 text-slate-700 hover:text-brand-600">Contact Us</button>
+            <div class="pt-4 border-t border-slate-100 flex flex-col space-y-3">
+                <button onclick="switchTab('portal'); toggleMobileMenu();" class="w-full py-2.5 text-center font-semibold text-brand-600 bg-brand-50 rounded-xl">Login</button>
+                <button onclick="switchTab('registration'); toggleMobileMenu();" class="w-full py-2.5 text-center font-semibold text-white bg-brand-600 rounded-xl shadow-md">Enroll Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Content Wrapper -->
+    <main>
+
+        <!-- ================= TAB 1: HOME ================= -->
+        <section id="tab-home" class="tab-content">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden bg-gradient-to-b from-brand-50/60 via-white to-white py-16 lg:py-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-brand-100 text-brand-700 rounded-full text-xs font-bold tracking-wide uppercase">
+                                <i class="fa-solid fa-award"></i> <span>Ranked #1 Coaching Institute of 2026</span>
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                                Empowering Minds, <span class="bg-gradient-to-r from-brand-600 to-indigo-500 bg-clip-text text-transparent">Securing Futures.</span>
+                            </h1>
+                            <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal">
+                                Comprehensive K-12 coaching, competitive exam prep, personalized mentorship, and state-of-the-art interactive labs designed to bring out the absolute best in every student.
+                            </p>
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
+                                <button onclick="switchTab('registration')" class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-2xl shadow-xl shadow-brand-500/25 transition transform hover:-translate-y-0.5 text-center">
+                                    Apply For Admission <i class="fa-solid fa-arrow-right ml-2"></i>
+                                </button>
+                                <button onclick="switchTab('courses')" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-2xl border border-slate-200 shadow-sm transition text-center">
+                                    Explore Courses
+                                </button>
+                            </div>
+
+                            <!-- Quick Stats -->
+                            <div class="grid grid-cols-3 gap-6 pt-10 border-t border-slate-200 mt-10">
+                                <div>
+                                    <p class="text-3xl font-extrabold text-brand-600">98%</p>
+                                    <p class="text-xs sm:text-sm text-slate-500 font-medium">Exam Success Rate</p>
+                                </div>
+                                <div>
+                                    <p class="text-3xl font-extrabold text-brand-600">15+</p>
+                                    <p class="text-xs sm:text-sm text-slate-500 font-medium">Expert Faculty</p>
+                                </div>
+                                <div>
+                                    <p class="text-3xl font-extrabold text-brand-600">1,200+</p>
+                                    <p class="text-xs sm:text-sm text-slate-500 font-medium">Alumni Scholars</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Image / Interactive Card -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="relative mx-auto max-w-md lg:max-w-none">
+                                <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-600 to-indigo-400 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+                                <div class="relative bg-white rounded-3xl p-6 shadow-2xl border border-slate-100 space-y-6">
+                                    <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-bold text-slate-900 text-sm">Batch Admissions Open</h4>
+                                                <p class="text-xs text-slate-500">Academic Year 2026-27</p>
+                                            </div>
+                                        </div>
+                                        <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-semibold">Limited Seats</span>
+                                    </div>
+
+                                    <div class="space-y-3">
+                                        <div class="p-3 bg-slate-50 rounded-2xl flex items-center justify-between">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
+                                                    <i class="fa-solid fa-calculator"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="text-xs font-bold text-slate-900">Advanced Mathematics</h5>
+                                                    <p class="text-[11px] text-slate-500">Grades 9 to 12 • Batch A</p>
+                                                </div>
+                                            </div>
+                                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-lg">4 Seats left</span>
+                                        </div>
+
+                                        <div class="p-3 bg-slate-50 rounded-2xl flex items-center justify-between">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center">
+                                                    <i class="fa-solid fa-atom"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="text-xs font-bold text-slate-900">Physics & Chemistry Olympiad</h5>
+                                                    <p class="text-[11px] text-slate-500">Grades 10 & 12 • Batch B</p>
+                                                </div>
+                                            </div>
+                                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-lg">2 Seats left</span>
+                                        </div>
+
+                                        <div class="p-3 bg-slate-50 rounded-2xl flex items-center justify-between">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center">
+                                                    <i class="fa-solid fa-code"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="text-xs font-bold text-slate-900">Python & AI for Teens</h5>
+                                                    <p class="text-[11px] text-slate-500">Grades 6 to 10 • Weekend</p>
+                                                </div>
+                                            </div>
+                                            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-lg">Open</span>
+                                        </div>
+                                    </div>
+
+                                    <button onclick="switchTab('registration')" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl text-sm transition">
+                                        Book Free Assessment Test
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlights / Why Choose Us -->
+            <div class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                        <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Why Apex Academy</h2>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">The Edge Your Child Deserves</h3>
+                        <p class="text-slate-600">We combine traditional academic rigor with modern pedagogical tools to foster deep conceptual understanding.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-brand-200 transition group">
+                            <div class="w-14 h-14 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center text-xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2">Expert Educators</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">Highly qualified mentors with 10+ years of coaching experience and proven track records.</p>
+                        </div>
+
+                        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-brand-200 transition group">
+                            <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition">
+                                <i class="fa-solid fa-users-rectangle"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2">Small Batch Sizes</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">Capped at 15 students per batch to ensure personalized attention and doubt resolution.</p>
+                        </div>
+
+                        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-brand-200 transition group">
+                            <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2">Smart Portal & Tracking</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">Real-time attendance, automated homework alerts, and test analytics sent directly to parents.</p>
+                        </div>
+
+                        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-brand-200 transition group">
+                            <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-xl mb-6 group-hover:bg-amber-600 group-hover:text-white transition">
+                                <i class="fa-solid fa-book-open-reader"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2">Curated Study Material</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">Comprehensive worksheets, formula sheets, mock test papers, and video archive access.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Courses Snippet -->
+            <div class="py-16 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                        <div>
+                            <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Programs Offered</h2>
+                            <h3 class="text-3xl font-extrabold text-slate-900 mt-1">Featured Academic Courses</h3>
+                        </div>
+                        <button onclick="switchTab('courses')" class="mt-4 md:mt-0 text-brand-600 font-semibold hover:text-brand-700 flex items-center">
+                            View All Courses <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 flex flex-col">
+                            <div class="h-48 bg-gradient-to-tr from-blue-600 to-indigo-500 p-6 flex flex-col justify-between text-white relative">
+                                <span class="self-start px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold">Grades 9 & 10</span>
+                                <div>
+                                    <h4 class="text-xl font-bold">Mathematics Foundation</h4>
+                                    <p class="text-blue-100 text-xs mt-1">Algebra, Geometry, Trigonometry & Calculus prep</p>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-1 flex flex-col justify-between space-y-6">
+                                <div class="space-y-2 text-xs text-slate-600">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Lead Instructor:</span>
+                                        <span class="font-semibold text-slate-700">Dr. Rajesh Kumar</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Batch Timings:</span>
+                                        <span class="font-semibold text-slate-700">Mon, Wed, Fri (4 PM)</span>
+                                    </div>
+                                </div>
+                                <button onclick="switchTab('courses')" class="w-full py-2.5 bg-slate-50 hover:bg-brand-50 text-brand-600 font-semibold rounded-xl text-sm transition">
+                                    Course Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 flex flex-col">
+                            <div class="h-48 bg-gradient-to-tr from-purple-600 to-pink-500 p-6 flex flex-col justify-between text-white relative">
+                                <span class="self-start px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold">Grades 11 & 12</span>
+                                <div>
+                                    <h4 class="text-xl font-bold">Advanced Sciences (PCM/PCB)</h4>
+                                    <p class="text-purple-100 text-xs mt-1">Physics, Chemistry, Biology & NEET/JEE foundation</p>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-1 flex flex-col justify-between space-y-6">
+                                <div class="space-y-2 text-xs text-slate-600">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Lead Instructor:</span>
+                                        <span class="font-semibold text-slate-700">Prof. Anita Sharma</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Batch Timings:</span>
+                                        <span class="font-semibold text-slate-700">Tue, Thu, Sat (5 PM)</span>
+                                    </div>
+                                </div>
+                                <button onclick="switchTab('courses')" class="w-full py-2.5 bg-slate-50 hover:bg-brand-50 text-brand-600 font-semibold rounded-xl text-sm transition">
+                                    Course Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 flex flex-col">
+                            <div class="h-48 bg-gradient-to-tr from-emerald-600 to-teal-500 p-6 flex flex-col justify-between text-white relative">
+                                <span class="self-start px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold">Grades 6 to 10</span>
+                                <div>
+                                    <h4 class="text-xl font-bold">Coding & Logical Thinking</h4>
+                                    <p class="text-emerald-100 text-xs mt-1">Python, Scratch, Web Development & Algorithms</p>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-1 flex flex-col justify-between space-y-6">
+                                <div class="space-y-2 text-xs text-slate-600">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Lead Instructor:</span>
+                                        <span class="font-semibold text-slate-700">Mr. Vikram Malhotra</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-400">Batch Timings:</span>
+                                        <span class="font-semibold text-slate-700">Saturdays & Sundays</span>
+                                    </div>
+                                </div>
+                                <button onclick="switchTab('courses')" class="w-full py-2.5 bg-slate-50 hover:bg-brand-50 text-brand-600 font-semibold rounded-xl text-sm transition">
+                                    Course Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: COURSES ================= -->
+        <section id="tab-courses" class="tab-content hidden py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                    <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Comprehensive Curriculum</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Explore Our Subject Catalog</h3>
+                    <p class="text-slate-600">Filter by grade level to find the right batch and curriculum for your child.</p>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-2 mb-12">
+                    <button onclick="filterCourses('all')" class="course-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold bg-brand-600 text-white shadow-md transition">All Courses</button>
+                    <button onclick="filterCourses('primary')" class="course-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Primary (1-5)</button>
+                    <button onclick="filterCourses('high')" class="course-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">High School (6-10)</button>
+                    <button onclick="filterCourses('higher')" class="course-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Higher Secondary (11-12)</button>
+                    <button onclick="filterCourses('coding')" class="course-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Coding & Skills</button>
+                </div>
+
+                <!-- Course Grid -->
+                <div id="course-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Populated dynamically or via static items -->
+                    <div class="course-card" data-category="high">
+                        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bold">Grades 9-10</span>
+                                    <span class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock text-brand-500 mr-1"></i> 3 Days/Week</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-1">Mathematics Advanced</h4>
+                                <p class="text-slate-600 text-sm">Algebra, Geometry, Statistics, and Board Exam Problem Solving.</p>
+                            </div>
+                            <div class="space-y-4 pt-4 border-t border-slate-100">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-500">Instructor: Dr. Rajesh Kumar</span>
+                                    <span class="font-bold text-slate-900">$120 / month</span>
+                                </div>
+                                <button onclick="switchTab('registration')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-semibold transition">Enroll in Course</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card" data-category="higher">
+                        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-bold">Grades 11-12</span>
+                                    <span class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock text-brand-500 mr-1"></i> 4 Days/Week</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-1">Physics & JEE Prep</h4>
+                                <p class="text-slate-600 text-sm">Mechanics, Electromagnetism, Optics, and Advanced Numericals.</p>
+                            </div>
+                            <div class="space-y-4 pt-4 border-t border-slate-100">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-500">Instructor: Prof. Anita Sharma</span>
+                                    <span class="font-bold text-slate-900">$150 / month</span>
+                                </div>
+                                <button onclick="switchTab('registration')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-semibold transition">Enroll in Course</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card" data-category="high">
+                        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-bold">Grades 6-10</span>
+                                    <span class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock text-brand-500 mr-1"></i> 3 Days/Week</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-1">Chemistry & Biology Lab</h4>
+                                <p class="text-slate-600 text-sm">Chemical bonding, organic chemistry basics, human anatomy & genetics.</p>
+                            </div>
+                            <div class="space-y-4 pt-4 border-t border-slate-100">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-500">Instructor: Dr. Suresh Rao</span>
+                                    <span class="font-bold text-slate-900">$110 / month</span>
+                                </div>
+                                <button onclick="switchTab('registration')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-semibold transition">Enroll in Course</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card" data-category="primary">
+                        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-bold">Grades 1-5</span>
+                                    <span class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock text-brand-500 mr-1"></i> 2 Days/Week</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-1">Primary English & Phonics</h4>
+                                <p class="text-slate-600 text-sm">Reading fluency, grammar foundations, vocabulary building, and spelling.</p>
+                            </div>
+                            <div class="space-y-4 pt-4 border-t border-slate-100">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-500">Instructor: Ms. Priya Menon</span>
+                                    <span class="font-bold text-slate-900">$90 / month</span>
+                                </div>
+                                <button onclick="switchTab('registration')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-semibold transition">Enroll in Course</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card" data-category="coding">
+                        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="px-3 py-1 bg-rose-50 text-rose-700 rounded-full text-xs font-bold">Grades 6-10</span>
+                                    <span class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock text-brand-500 mr-1"></i> Weekends</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-1">Python & AI for Teens</h4>
+                                <p class="text-slate-600 text-sm">Learn syntax, data structures, simple machine learning models and games.</p>
+                            </div>
+                            <div class="space-y-4 pt-4 border-t border-slate-100">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-500">Instructor: Mr. Vikram Malhotra</span>
+                                    <span class="font-bold text-slate-900">$130 / month</span>
+                                </div>
+                                <button onclick="switchTab('registration')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-semibold transition">Enroll in Course</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card" data-category="higher">
+                        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs font-bold">Grades 11-12</span>
+                                    <span class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-clock text-brand-500 mr-1"></i> 3 Days/Week</span>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-1">English Literature & IELTS</h4>
+                                <p class="text-slate-600 text-sm">Advanced essay writing, critical literary analysis, and speaking proficiency.</p>
+                            </div>
+                            <div class="space-y-4 pt-4 border-t border-slate-100">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-500">Instructor: Ms. Sarah Jenkins</span>
+                                    <span class="font-bold text-slate-900">$100 / month</span>
+                                </div>
+                                <button onclick="switchTab('registration')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-semibold transition">Enroll in Course</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: CALENDAR & TIMETABLE ================= -->
+        <section id="tab-calendar" class="tab-content hidden py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                    <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Schedules & Events</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Interactive Calendar & Timetable</h3>
+                    <p class="text-slate-600">Track batch sessions, special test dates, parent-teacher meetings, and holidays.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Calendar Widget -->
+                    <div class="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+                        <div class="flex items-center justify-between mb-6">
+                            <h4 id="calendar-month-year" class="text-xl font-bold text-slate-900">October 2026</h4>
+                            <div class="flex space-x-2">
+                                <button onclick="changeMonth(-1)" class="w-9 h-9 rounded-xl border border-slate-200 flex items-center justify-center hover:bg-slate-50 text-slate-600"><i class="fa-solid fa-chevron-left"></i></button>
+                                <button onclick="changeMonth(1)" class="w-9 h-9 rounded-xl border border-slate-200 flex items-center justify-center hover:bg-slate-50 text-slate-600"><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Days Header -->
+                        <div class="grid grid-cols-7 gap-2 text-center text-xs font-semibold text-slate-400 mb-3">
+                            <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+                        </div>
+
+                        <!-- Days Grid -->
+                        <div id="calendar-days" class="grid grid-cols-7 gap-2 text-sm">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="flex flex-wrap items-center gap-6 mt-8 pt-6 border-t border-slate-100 text-xs text-slate-600 font-medium">
+                            <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-brand-500"></span><span>Batch Class</span></div>
+                            <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span>Unit Test / Exam</span></div>
+                            <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-amber-500"></span><span>Parent-Teacher Meet</span></div>
+                            <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-slate-300"></span><span>Holiday</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Events Sidebar -->
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-4 pb-2 border-b border-slate-100">Upcoming Highlights</h4>
+                            <div id="event-list" class="space-y-4">
+                                <div class="p-3.5 bg-rose-50 border border-rose-100 rounded-2xl flex space-x-3 items-start">
+                                    <div class="w-10 h-10 rounded-xl bg-rose-500 text-white font-bold flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-file-lines"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-xs font-bold text-slate-900">Monthly Diagnostic Test</h5>
+                                        <p class="text-[11px] text-slate-500">Oct 18, 2026 • 10:00 AM</p>
+                                        <p class="text-[11px] text-rose-700 font-medium mt-1">All batches mandatory attendance</p>
+                                    </div>
+                                </div>
+
+                                <div class="p-3.5 bg-amber-50 border border-amber-100 rounded-2xl flex space-x-3 items-start">
+                                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-xs font-bold text-slate-900">Parent-Teacher Meeting</h5>
+                                        <p class="text-[11px] text-slate-500">Oct 24, 2026 • 4:00 PM - 7:00 PM</p>
+                                        <p class="text-[11px] text-amber-700 font-medium mt-1">Book slot via parent portal</p>
+                                    </div>
+                                </div>
+
+                                <div class="p-3.5 bg-brand-50 border border-brand-100 rounded-2xl flex space-x-3 items-start">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-bold flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-laptop-code"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-xs font-bold text-slate-900">Hackathon & Science Fair</h5>
+                                        <p class="text-[11px] text-slate-500">Nov 02, 2026 • 9:00 AM</p>
+                                        <p class="text-[11px] text-brand-700 font-medium mt-1">Open for Grades 6 to 12</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-100">
+                            <button onclick="switchTab('registration')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-sm transition">
+                                Register for Special Events
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: FEE STRUCTURE & CALCULATOR ================= -->
+        <section id="tab-fees" class="tab-content hidden py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                    <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Transparent Pricing</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Fee Structure & Estimator Calculator</h3>
+                    <p class="text-slate-600">Calculate estimated tuition costs with sibling discounts and scholarship waivers instantly.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <!-- Pricing Cards Table -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="p-6 rounded-3xl border border-slate-200 bg-slate-50 flex flex-col justify-between">
+                                <div>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">Primary (1-5)</span>
+                                    <h4 class="text-2xl font-extrabold text-slate-900 mt-4">$90 <span class="text-xs font-normal text-slate-500">/ month</span></h4>
+                                    <p class="text-slate-600 text-xs mt-2">All subjects + Weekly test series + Study notes.</p>
+                                </div>
+                                <ul class="space-y-2.5 my-6 text-xs text-slate-600">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Math, Science & English</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Small batch size (max 12)</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Portal access included</li>
+                                </ul>
+                                <button onclick="switchTab('registration')" class="w-full py-2.5 bg-white hover:bg-brand-600 hover:text-white text-brand-600 border border-brand-200 rounded-xl font-semibold text-xs transition">Select Plan</button>
+                            </div>
+
+                            <div class="p-6 rounded-3xl border-2 border-brand-600 bg-brand-50/40 flex flex-col justify-between relative shadow-sm">
+                                <span class="absolute -top-3 right-6 px-3 py-1 bg-brand-600 text-white rounded-full text-[10px] font-bold uppercase tracking-wider">Most Popular</span>
+                                <div>
+                                    <span class="px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs font-bold">High School (6-10)</span>
+                                    <h4 class="text-2xl font-extrabold text-slate-900 mt-4">$125 <span class="text-xs font-normal text-slate-500">/ month</span></h4>
+                                    <p class="text-slate-600 text-xs mt-2">Comprehensive coaching + Coding / Olympiad prep.</p>
+                                </div>
+                                <ul class="space-y-2.5 my-6 text-xs text-slate-600">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Advanced Math & Science</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Weekly Mock Tests & analysis</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Free coding module access</li>
+                                </ul>
+                                <button onclick="switchTab('registration')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-semibold text-xs transition shadow-md">Select Plan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fee Estimator Calculator Widget -->
+                    <div class="lg:col-span-5 bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+                                <h4 class="font-bold text-lg"><i class="fa-solid fa-calculator text-brand-400 mr-2"></i> Fee Calculator</h4>
+                                <span class="text-xs text-slate-400">Instant Estimate</span>
+                            </div>
+
+                            <div class="space-y-5 text-sm">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-2">Select Grade Level</label>
+                                    <select id="calc-grade" onchange="calculateFees()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white font-medium focus:outline-none focus:border-brand-500">
+                                        <option value="90">Primary (Grades 1-5) - $90/mo</option>
+                                        <option value="125" selected>High School (Grades 6-10) - $125/mo</option>
+                                        <option value="160">Higher Secondary (Grades 11-12) - $160/mo</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-2">Additional Electives</label>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center space-x-3 text-xs cursor-pointer">
+                                            <input type="checkbox" id="calc-coding" onchange="calculateFees()" value="30" class="w-4 h-4 rounded text-brand-600 bg-slate-800 border-slate-700 focus:ring-0">
+                                            <span>Coding & Python Bootcamp (+$30/mo)</span>
+                                        </label>
+                                        <label class="flex items-center space-x-3 text-xs cursor-pointer">
+                                            <input type="checkbox" id="calc-exam" onchange="calculateFees()" value="25" class="w-4 h-4 rounded text-brand-600 bg-slate-800 border-slate-700 focus:ring-0">
+                                            <span>Olympiad / Competitive Exam Prep (+$25/mo)</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-2">Scholarship / Sibling Discount</label>
+                                    <select id="calc-discount" onchange="calculateFees()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white font-medium focus:outline-none focus:border-brand-500">
+                                        <option value="0">No Discount</option>
+                                        <option value="10">Sibling Discount (10% Off)</option>
+                                        <option value="20">Merit Scholarship Test Waiver (20% Off)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-8 border-t border-slate-800 mt-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs text-slate-400 font-medium">Estimated Monthly Tuition:</span>
+                                <span id="calc-total" class="text-3xl font-extrabold text-emerald-400">$125.00</span>
+                            </div>
+                            <button onclick="switchTab('registration')" class="w-full py-3.5 bg-brand-600 hover:bg-brand-500 font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">
+                                Proceed with this Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 5: REGISTRATION / ADMISSION FORM ================= -->
+        <section id="tab-registration" class="tab-content hidden py-16 bg-slate-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto space-y-4 mb-12">
+                    <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Join Apex Academy</h2>
+                    <h3 class="text-3xl font-extrabold text-slate-900">Online Admission & Registration Form</h3>
+                    <p class="text-slate-600">Fill in the student and guardian details below to secure your spot for the upcoming term.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-slate-200">
+                    <!-- Multi-step Indicator -->
+                    <div class="flex items-center justify-between mb-10 pb-6 border-b border-slate-100">
+                        <div class="flex items-center space-x-3">
+                            <div id="step-ind-1" class="w-9 h-9 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-sm">1</div>
+                            <span class="text-xs font-bold text-slate-900 hidden sm:inline">Student Details</span>
+                        </div>
+                        <div class="w-12 h-0.5 bg-slate-200"></div>
+                        <div class="flex items-center space-x-3">
+                            <div id="step-ind-2" class="w-9 h-9 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-sm">2</div>
+                            <span class="text-xs font-semibold text-slate-400 hidden sm:inline">Course & Guardian</span>
+                        </div>
+                        <div class="w-12 h-0.5 bg-slate-200"></div>
+                        <div class="flex items-center space-x-3">
+                            <div id="step-ind-3" class="w-9 h-9 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-sm">3</div>
+                            <span class="text-xs font-semibold text-slate-400 hidden sm:inline">Document Upload</span>
+                        </div>
+                    </div>
+
+                    <form id="admission-form" onsubmit="handleRegistrationSubmit(event)">
+                        <!-- Step 1 -->
+                        <div id="reg-step-1" class="space-y-6">
+                            <h4 class="text-lg font-bold text-slate-900">Student Personal Information</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-2">Full Name *</label>
+                                    <input type="text" required placeholder="e.g. Alex Morgan" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-2">Date of Birth *</label>
+                                    <input type="date" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-2">Current Grade / Class *</label>
+                                    <select required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                        <option value="">Select Grade</option>
+                                        <option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option>
+                                        <option>Grade 6</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option>
+                                        <option>Grade 11</option><option>Grade 12</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-2">School Name *</label>
+                                    <input type="text" required placeholder="e.g. Lincoln High School" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                            </div>
+                            <div class="flex justify-end pt-4">
+                                <button type="button" onclick="goToRegStep(2)" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-sm transition">
+                                    Next: Course & Guardian <i class="fa-solid fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div id="reg-step-2" class="space-y-6 hidden">
+                            <h4 class="text-lg font-bold text-slate-900">Course Selection & Guardian Details</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-2">Preferred Subject Package *</label>
+                                    <select required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                        <option value="">Select Package</option>
+                                        <option>Mathematics Foundation (Grades 9-10)</option>
+                                        <option>Advanced Sciences PCM (Grades 11-12)</option>
+                                        <option>Chemistry & Biology Lab (Grades 6-10)</option>
+                                        <option>Python & AI Coding Bootcamp</option>
+                                        <option>All-Subject Comprehensive Package</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-2">Batch Timing Preference *</label>
+                                    <select required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                        <option value="">Select Timing</option>
+                                        <option>Evening Batch (4:00 PM - 6:00 PM)</option>
+                                        <option>Late Evening Batch (6:30 PM - 8:30 PM)</option>
+                                        <option>Weekend Intensive (Sat & Sun 10 AM - 1 PM)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-2">Guardian Full Name *</label>
+                                    <input type="text" required placeholder="e.g. Robert Morgan" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-2">Guardian Contact Phone *</label>
+                                    <input type="tel" required placeholder="+1 (555) 019-2834" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                            </div>
+                            <div class="flex justify-between pt-4">
+                                <button type="button" onclick="goToRegStep(1)" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm transition">
+                                    <i class="fa-solid fa-arrow-left mr-2"></i> Back
+                                </button>
+                                <button type="button" onclick="goToRegStep(3)" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-sm transition">
+                                    Next: Document Upload <i class="fa-solid fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div id="reg-step-3" class="space-y-6 hidden">
+                            <h4 class="text-lg font-bold text-slate-900">Document Upload Simulation</h4>
+                            <p class="text-xs text-slate-500">Please upload previous grade report cards or ID proof for verification.</p>
+                            
+                            <div class="border-2 border-dashed border-slate-200 rounded-3xl p-8 text-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer">
+                                <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <h5 class="text-sm font-bold text-slate-800">Click to upload or drag and drop</h5>
+                                <p class="text-xs text-slate-400 mt-1">PDF, PNG, JPG up to 10MB</p>
+                                <input type="file" class="hidden" id="doc-file-input">
+                            </div>
+
+                            <div class="flex items-center space-x-3 pt-2">
+                                <input type="checkbox" required id="terms" class="w-4 h-4 rounded text-brand-600 border-slate-300">
+                                <label for="terms" class="text-xs text-slate-600">I agree to the institute's code of conduct and tuition fee policies.</label>
+                            </div>
+
+                            <div class="flex justify-between pt-4">
+                                <button type="button" onclick="goToRegStep(2)" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm transition">
+                                    <i class="fa-solid fa-arrow-left mr-2"></i> Back
+                                </button>
+                                <button type="submit" class="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-emerald-500/20">
+                                    Complete Registration <i class="fa-solid fa-check ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 6: PORTAL LOGIN ================= -->
+        <section id="tab-portal" class="tab-content hidden py-16 bg-slate-50">
+            <div class="max-w-md mx-auto px-4">
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 space-y-6">
+                    <div class="text-center space-y-2">
+                        <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center mx-auto text-xl font-bold">
+                            <i class="fa-solid fa-user-lock"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Portal Login</h3>
+                        <p class="text-xs text-slate-500">Access attendance, marks, and announcements.</p>
+                    </div>
+
+                    <!-- Role Selector Tabs -->
+                    <div class="grid grid-cols-3 gap-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold text-center">
+                        <button onclick="switchPortalRole('student')" id="role-btn-student" class="py-2 bg-white text-brand-600 rounded-lg shadow-sm transition">Student</button>
+                        <button onclick="switchPortalRole('teacher')" id="role-btn-teacher" class="py-2 text-slate-600 rounded-lg transition">Teacher</button>
+                        <button onclick="switchPortalRole('parent')" id="role-btn-parent" class="py-2 text-slate-600 rounded-lg transition">Parent</button>
+                    </div>
+
+                    <form onsubmit="handlePortalLogin(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Email or ID</label>
+                            <input type="text" required id="portal-user" placeholder="student@apexacademy.edu" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Password</label>
+                            <input type="password" required placeholder="••••••••" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-md shadow-brand-500/20">
+                            Sign In to Portal
+                        </button>
+                    </form>
+
+                    <div class="text-center pt-2">
+                        <a href="#" onclick="showDemoModal()" class="text-xs text-brand-600 font-semibold hover:underline">View Demo Account Credentials</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 7: SUCCESS STORIES & TESTIMONIALS ================= -->
+        <!-- Included inside home or as a separate section below -->
+
+        <!-- ================= TAB 8: CONTACT & BRANCH LOCATION ================= -->
+        <section id="tab-contact" class="tab-content hidden py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                    <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Get In Touch</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Visit Our Branches or Send an Inquiry</h3>
+                    <p class="text-slate-600">Have questions about batches or fee concessions? Reach out to our academic advisors.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200 space-y-6">
+                        <h4 class="text-xl font-bold text-slate-900">Send Us a Message</h4>
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Your Name *</label>
+                                    <input type="text" required placeholder="Jane Doe" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address *</label>
+                                    <input type="email" required placeholder="jane@example.com" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Subject / Inquiry Type *</label>
+                                <select class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500">
+                                    <option>Admission & Course Inquiry</option>
+                                    <option>Fee Structure & Concession</option>
+                                    <option>Schedule & Timetable</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Message *</label>
+                                <textarea rows="4" required placeholder="How can we help your child excel?" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-md">
+                                Send Inquiry Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Branch Locations & Info -->
+                    <div class="space-y-8">
+                        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200 space-y-4">
+                            <h4 class="text-xl font-bold text-slate-900"><i class="fa-solid fa-location-dot text-brand-600 mr-2"></i> Main Campus (Downtown)</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">452 Innovation Avenue, Suite 300, Academic District, City Center.</p>
+                            <div class="space-y-2 text-xs text-slate-600 pt-2">
+                                <div class="flex items-center"><i class="fa-solid fa-phone text-brand-600 w-5"></i><span>+1 (555) 839-2041</span></div>
+                                <div class="flex items-center"><i class="fa-solid fa-envelope text-brand-600 w-5"></i><span>downtown@apexacademy.edu</span></div>
+                                <div class="flex items-center"><i class="fa-solid fa-clock text-brand-600 w-5"></i><span>Mon - Sat: 9:00 AM - 8:00 PM</span></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200 space-y-4">
+                            <h4 class="text-xl font-bold text-slate-900"><i class="fa-solid fa-location-dot text-brand-600 mr-2"></i> North Branch (Suburbs)</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">78 Valley Parkway, Near Metro Station, North District.</p>
+                            <div class="space-y-2 text-xs text-slate-600 pt-2">
+                                <div class="flex items-center"><i class="fa-solid fa-phone text-brand-600 w-5"></i><span>+1 (555) 839-2052</span></div>
+                                <div class="flex items-center"><i class="fa-solid fa-envelope text-brand-600 w-5"></i><span>north@apexacademy.edu</span></div>
+                                <div class="flex items-center"><i class="fa-solid fa-clock text-brand-600 w-5"></i><span>Mon - Sat: 10:00 AM - 7:00 PM</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center text-white font-bold">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">Apex Academy</span>
+                </div>
+                <p class="text-xs leading-relaxed">Delivering world-class tutoring, competitive exam guidance, and mentorship for K-12 students since 2012.</p>
+            </div>
+            <div>
+                <h5 class="text-white text-xs font-bold uppercase tracking-wider mb-4">Quick Links</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><button onclick="switchTab('courses')" class="hover:text-white transition">Courses & Batches</button></li>
+                    <li><button onclick="switchTab('calendar')" class="hover:text-white transition">Timetable & Events</button></li>
+                    <li><button onclick="switchTab('fees')" class="hover:text-white transition">Fee Calculator</button></li>
+                    <li><button onclick="switchTab('registration')" class="hover:text-white transition">Admission Form</button></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white text-xs font-bold uppercase tracking-wider mb-4">Programs</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" onclick="switchTab('courses')" class="hover:text-white transition">Mathematics Foundation</a></li>
+                    <li><a href="#" onclick="switchTab('courses')" class="hover:text-white transition">Advanced Sciences (PCM/PCB)</a></li>
+                    <li><a href="#" onclick="switchTab('courses')" class="hover:text-white transition">Coding & AI for Teens</a></li>
+                    <li><a href="#" onclick="switchTab('courses')" class="hover:text-white transition">Olympiad & Test Prep</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white text-xs font-bold uppercase tracking-wider mb-4">Newsletter</h5>
+                <p class="text-xs mb-3">Subscribe for exam tips, scholarship updates, and workshop alerts.</p>
+                <div class="flex space-x-2">
+                    <input type="email" placeholder="Your email" class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none w-full">
+                    <button onclick="showToast('Subscribed successfully!')" class="px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-bold hover:bg-brand-500 transition">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Apex Academy Tuition & Coaching Institute. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Custom Modal / Toast Notification -->
+    <div id="toast-modal" class="fixed bottom-6 right-6 z-50 hidden bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center space-x-3 border border-slate-700 animate-fade-in">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toast-message" class="text-xs font-medium">Notification message here</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Tab Switcher function
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('tab-' + tabId);
+            if (target) {
+                target.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // Update nav links styling if needed
+            document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('text-brand-600', 'font-semibold'));
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Course Filtering
+        function filterCourses(category) {
+            document.querySelectorAll('.course-filter-btn').forEach(btn => {
+                btn.className = "course-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition";
+            });
+            event.target.className = "course-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold bg-brand-600 text-white shadow-md transition";
+
+            document.querySelectorAll('.course-card').forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Interactive Calendar generator
+        function renderCalendar() {
+            const daysContainer = document.getElementById('calendar-days');
+            if (!daysContainer) return;
+            daysContainer.innerHTML = '';
+
+            // October 2026 starts on Thursday (index 3 if Mon=0)
+            // Total 31 days
+            const startDayIndex = 3; // Thursday
+            const totalDays = 31;
+
+            for (let i = 0; i < startDayIndex; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = "h-20 bg-slate-50/50 rounded-2xl opacity-30";
+                daysContainer.appendChild(emptyCell);
+            }
+
+            for (let day = 1; day <= totalDays; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = "h-20 bg-white border border-slate-100 rounded-2xl p-2 flex flex-col justify-between hover:border-brand-300 transition relative cursor-pointer";
+                
+                let badgeHTML = '';
+                if (day === 18) {
+                    badgeHTML = '<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-rose-500" title="Unit Test"></span>';
+                } else if (day === 24) {
+                    badgeHTML = '<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-amber-500" title="PTM"></span>';
+                } else if (day % 3 === 0) {
+                    badgeHTML = '<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-brand-500" title="Batch Class"></span>';
+                }
+
+                dayCell.innerHTML = `
+                    <span class="text-xs font-bold text-slate-700">${day}</span>
+                    ${badgeHTML}
+                    <span class="text-[10px] text-slate-400">${day === 18 ? 'Test' : day === 24 ? 'PTM' : ''}</span>
+                `;
+                daysContainer.appendChild(dayCell);
+            }
+        }
+
+        function changeMonth(dir) {
+            showToast('Switched calendar month view.');
+        }
+
+        // Fee Calculator
+        function calculateFees() {
+            const gradeBase = parseInt(document.getElementById('calc-grade').value) || 0;
+            const coding = document.getElementById('calc-coding').checked ? 30 : 0;
+            const exam = document.getElementById('calc-exam').checked ? 25 : 0;
+            const discountPercent = parseInt(document.getElementById('calc-discount').value) || 0;
+
+            let subtotal = gradeBase + coding + exam;
+            let discountAmount = (subtotal * discountPercent) / 100;
+            let total = subtotal - discountAmount;
+
+            document.getElementById('calc-total').innerText = '$' + total.toFixed(2);
+        }
+
+        // Multi-step registration form navigation
+        function goToRegStep(step) {
+            document.getElementById('reg-step-1').classList.add('hidden');
+            document.getElementById('reg-step-2').classList.add('hidden');
+            document.getElementById('reg-step-3').classList.add('hidden');
+
+            document.getElementById('reg-step-' + step).classList.remove('hidden');
+
+            // Update indicators
+            for (let i = 1; i <= 3; i++) {
+                const ind = document.getElementById('step-ind-' + i);
+                if (i <= step) {
+                    ind.className = "w-9 h-9 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-sm";
+                } else {
+                    ind.className = "w-9 h-9 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-sm";
+                }
+            }
+        }
+
+        function handleRegistrationSubmit(e) {
+            e.preventDefault();
+            showToast('Registration submitted successfully! Our counselor will contact you within 24 hours.');
+            switchTab('home');
+        }
+
+        // Portal Role Switcher
+        function switchPortalRole(role) {
+            ['student', 'teacher', 'parent'].forEach(r => {
+                document.getElementById('role-btn-' + r).className = "py-2 text-slate-600 rounded-lg transition";
+            });
+            document.getElementById('role-btn-' + role).className = "py-2 bg-white text-brand-600 rounded-lg shadow-sm transition";
+            
+            const userField = document.getElementById('portal-user');
+            if (role === 'student') userField.value = 'alex.morgan@apexacademy.edu';
+            if (role === 'teacher') userField.value = 'dr.rajesh@apexacademy.edu';
+            if (role === 'parent') userField.value = 'robert.morgan@apexacademy.edu';
+        }
+
+        function handlePortalLogin(e) {
+            e.preventDefault();
+            showToast('Login successful! Redirecting to dashboard simulation...');
+            setTimeout(() => {
+                showToast('Welcome to Apex Portal Dashboard!');
+            }, 1000);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('Inquiry message sent! Thank you for reaching out.');
+            e.target.reset();
+        }
+
+        function showDemoModal() {
+            showToast('Demo Credentials: Use any pre-filled email with password "secret123".');
+        }
+
+        // Toast Notification Helper
+        function showToast(message) {
+            const toast = document.getElementById('toast-modal');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            renderCalendar();
+            switchPortalRole('student');
+        };
+    </script>
+</body>
+</html>
